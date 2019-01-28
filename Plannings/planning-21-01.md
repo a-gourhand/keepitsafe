@@ -3,19 +3,19 @@
 ## Lundi 21
 
 - Utilisation des volumes sous Docker 
+
+## Mardi 22 & Mercredi 23
+
 - Mise en pratique avec une application test Mongo + Node
 - Continuer à étudier JSON Schéma
 
-## Mardi 22 & Mercredi 23
-- Étudier la structure des ressources à définir dans le JSON Schéma
-- Continuer d'explorer les fonctionnalités offertes par Docker
-
-
 ## Jeudi 24 & Vendredi 25
 
-- Préparer un atelier pour l'équipe afin de déterminer les besoins relatifs à l'application avec pour objectif de déterminer la structure des Schémas sous-jacents
+- Etude de la structure de ressources définies par le JSON Schéma, commencer à définir les points à aborder lors d'un futur atelier avec l'équipe afin d'arreter une première version du prototype de schéma
 
 ## Semaine suivante
-- Présenter l'atelier
-- Arrêter une première version du Schéma
+- Commencer à préparer l'atelier
+- Continuer d'étudier les besoins relatifs au schéma
+- Explorer les fonctionnalités offertes par Docker
+- Expérimenter au travers de l'application test
  
