@@ -20,8 +20,7 @@ En prenant l'exemple du Gouessant :
   - Chaque mot à sa propre définiton, relative au contexte.
   - Les mots sont hiérarchisés, "poulette" est un type de "poule".
   
-Après avoir entré autant de mots que nécessaire, 
-  
+Après avoir entré autant de mots que nécessaire, on peut en visualiser la structure, ou accéder à un élément en particulier.
  
 
 ### Caractéristiques relative à un terme : Ressource
