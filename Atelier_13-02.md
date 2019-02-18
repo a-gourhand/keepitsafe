@@ -41,7 +41,7 @@ Quelque chose (matériel, humain, programme) qui peut être visé, et qui a les 
         - Est ce que la ressource est active ? 
             - Ex : employé en CDD, devient inactif à la fin de son contrat si non renouvelé
 
-    - Contexte :
+    - Contexte : (optionnel)
         - Elle peut être 
             - Interne
             - Externe
