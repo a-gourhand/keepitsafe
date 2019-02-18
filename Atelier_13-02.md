@@ -29,27 +29,27 @@ Après avoir entré autant de mots que nécessaire, on peut en visualiser la str
 
 Quelque chose (matériel, humain, programme) qui peut être visé, et qui a les caractéristiques suivantes :
 
-> Identifiant unique
+    - Identifiant unique
 
-> Accès
+    - Accès
 
-> Disponibilité
-  > Dans le temps
-  > Dans l'espace
+    - Disponibilité
+        - Dans le temps
+        - Dans l'espace
   
-> Activité
-  > Est ce que la ressource est active ? 
-    > Ex : employé en CDD, devient inactif à la fin de son contrat si non renouvelé
+    - Activité
+        - Est ce que la ressource est active ? 
+            - Ex : employé en CDD, devient inactif à la fin de son contrat si non renouvelé
 
-> Contexte :
-  > Elle peut être 
-    > Interne
-    > Externe
-  > Dans les domaines suivants :
-    > Gestion de projet
-    > Matériel (hardware)
-    > Outils (software)
-    > RH
+    - Contexte :
+        - Elle peut être 
+            - Interne
+            - Externe
+        - Dans les domaines suivants :
+            - Gestion de projet
+            - Matériel (hardware)
+            - Outils (software)
+            - RH
  
   
 
