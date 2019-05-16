@@ -1,0 +1,47 @@
+html
+	head
+		title= locale.website[title]
+
+		
+
+		link(rel='stylesheet', href='/style.css', type='text/css')
+		script(src="/jquery-3.4.0.slim.min.js",
+			  integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI=",
+			  crossorigin="anonymous")
+		script(src="/ui.js")
+		script(src="/script.js")
+		//link(href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet")
+		link(rel="icon" type="image/png" href="/Icons/logo_small.png")
+
+		link(href="/choicesjs/styles/choices.min.css" rel="stylesheet")
+		script(src="/choicesjs/scripts/choices.min.js")
+
+		
+		
+	body
+
+		nav.menuTransitions
+			div#menuFirst.menuContainer
+				img(src='/Icons/menu.png')
+				p=locale.website.menu
+			div#menu
+				a.menuContainer(class='nav-button' href='/')
+					img(src='/Icons/home.png')
+					p.menuTransitions=locale.website.index
+				a.menuContainer(class='nav-button' href='/form')
+					img(src='/Icons/document.png')
+					p.menuTransitions=locale.website.form
+				a.menuContainer(class='nav-button' href='/search')
+					img(src='/Icons/search.png')
+					p.menuTransitions=locale.website.search
+
+
+		
+		div#pageBlock.menuTransitions
+			div#contentBlock
+				h1= locale.website[title]
+				block page-body
+		script
+			include ../public/raw.js
+
+

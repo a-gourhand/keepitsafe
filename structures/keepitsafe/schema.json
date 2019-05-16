@@ -1,0 +1,36 @@
+{
+
+	"title" :{
+		"type": "String"
+	},
+
+	"internal_jobs": [{
+	    "type": "String"
+	}],
+
+	"information_body" :{
+		"type": "String",
+		"width" : 4,
+		"height" : 2
+	},
+
+	
+
+	"information_owner": {
+		"type": "String"
+	},
+
+	"information_type" :{
+		"type": "String"
+	},
+
+	"information_refs" :{
+		"type": "String"
+	},
+
+
+	"keywords" :{
+		"type" : "String"
+	}
+
+}

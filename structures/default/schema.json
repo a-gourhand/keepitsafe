@@ -1,0 +1,35 @@
+{
+	"organisation_provider": {
+		"type": "String",
+		"static" : true
+	},
+
+	"organisation_content_manager": {
+		"type": "String",
+		"static" : true
+	},
+
+	"uuid" : {
+		"type": "String",
+		"static" : true,
+		"hidden" : true
+	},
+
+	"hash":{
+		"type": "String",
+		"static" : true,
+		"hidden": true
+	},
+
+	"creation_date": {
+		"type": "Date",
+		"static" : true
+	},
+
+	"last_modification": {
+		"type": "Date",
+		"static" : true
+	}
+
+
+}

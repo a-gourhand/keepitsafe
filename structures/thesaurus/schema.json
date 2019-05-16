@@ -1,0 +1,43 @@
+{
+	"word": {
+		"type": "String"
+	},
+	"context": {
+		"organisation": {
+			"type": "String"
+		},
+		"jobs": [{
+		    "type": "String"
+		}]
+	},
+	"parent": {
+		"type": "String"
+	},
+	"childs": {
+		"type": "String"
+	},
+	"definition": {
+		"type": "String",
+		"width" : 4,
+		"height" : 2
+	},
+	"language_current": {
+		"type": "String"
+	},
+	"name_in_contexts": [
+		{
+			"name": {
+				"type": "String"
+			},
+			"context": {
+				"organisation": {
+					"type": "String"
+				},
+				"jobs": [{
+				    "type": "String"
+				}]
+			}
+		}
+	]
+}
+

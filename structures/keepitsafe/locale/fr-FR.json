@@ -1,0 +1,28 @@
+{
+	"schema" :{
+		"organisation_provider" : "Fournisseur du service",
+		"organisation_content_manager" : "Responsable du contenu",
+		"created_by":"Responsable de la ressource",
+		"creation_date" : "Date de création",
+		"modified_by":"Dernière modification par ",
+		"last_modification_date" : ", le",
+		
+		"internal_jobs" : "Contexte interne",
+		"information_owner" : "Propriétaire du contenu",
+		"information_type" : "Type de contenu",
+		"information_refs" : "Informations référencées",
+		"title" : "Titre",
+		"information_body" : "Corps du contenu",
+		"keywords" : "Mots clés"
+
+	},
+	"website" :{
+		"form" : "Formulaire",
+		"index" : "Thésaurus",
+		"search" : "Recherche",
+		"send_form" : "Envoyer le formulaire",
+		"results" : "Résultats",
+		"research" : "Rechercher",
+		"menu" : "Menu"
+	}
+}

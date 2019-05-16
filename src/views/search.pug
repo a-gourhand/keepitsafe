@@ -1,0 +1,13 @@
+extends base.pug
+include mixins.pug
+	
+block page-body
+	form#search(method='GET' action=route)
+			div#formDiv
+				+displayObj(schema)
+			input.submit(type='submit',value='Chercher')
+
+
+
+
+

@@ -1,0 +1,31 @@
+{
+	"schema" :{
+		"organisation_provider" : "Fournisseur du service",
+		"organisation_content_manager" : "Responsable du contenu",
+		"created_by":"Responsable de la ressource",
+		"creation_date" : "Date de création",
+		"modified_by":"Dernière modification par ",
+		"last_modification_date" : ", le",
+
+		"word" : "Mot",
+		"context" : "Contexte",
+		"organisation" : "Organisation",
+		"jobs" : "Métiers",
+		"parent" : "Parent",
+		"childs": "Enfants",
+		"definition" : "Définition",
+		"language_current" : "Langage actuel",
+		"name" : "Nom",
+		"name_in_contexts" : "Nom par contexte"
+
+	},
+	"website" :{
+		"form" : "Formulaire",
+		"index" : "Thésaurus",
+		"search" : "Recherche",
+		"send_form" : "Envoyer le formulaire",
+		"results" : "Résultats",
+		"research" : "Rechercher",
+		"menu" : "Menu"
+	}
+}
