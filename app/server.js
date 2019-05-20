@@ -29,7 +29,7 @@ app.locals.routers = routers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/',express.static(__dirname + '/public'));
-app.use('/choicesjs/',express.static(__dirname + '/../node_modules/choices.js/public/assets'));
+app.use('/choicesjs/',express.static(__dirname + '/node_modules/choices.js/public/assets'));
 
 
 /* === ROUTER SETUP === */
