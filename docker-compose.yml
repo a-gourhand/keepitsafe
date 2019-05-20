@@ -20,7 +20,8 @@ services:
   depends_on:
    - "mongo"
   restart: unless-stopped
-   mongo:
+
+ mongo:
   container_name: mongo
   image: mongo
   expose:
