@@ -11,7 +11,7 @@ const path			 = require('path')
 const config     = require('./config')			 // Configuration file
 const db         = require('./db')				 // DB connection
 const routers    = require('./routers/generic_router')
-const locale		 = require('../locale/fr-FR')
+const locale		 = require('./locale/fr-FR')
 const pug_helper = require('./pug_helper')
 
 /* === DB CONNECTION === */
