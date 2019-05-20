@@ -12,7 +12,7 @@ services:
  app:
   container_name: app
   restart: always
-  build: src
+  build: app
   expose:
    - "4000"
   links:
