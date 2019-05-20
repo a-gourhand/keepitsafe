@@ -1,20 +1,29 @@
 version: "2"
 services:
-  app:
-    container_name: app
-    restart: always
-    build: .
-    ports:
-      - "4000:4000"
-    links:
-      - mongo
-    depends_on:
-      - "mongo"
-    restart: unless-stopped
-  mongo:
-    container_name: mongo
-    image: mongo
-    expose:
-      - "27017"
-    volumes:
-          - ./db:/data/db
+	web:
+		container_name: nginx
+		restart: always
+		build: nginx
+		ports:
+			- "8080:80"
+		links:
+			- app
+
+	app:
+		container_name: app
+		restart: always
+		build: src
+		expose:
+			- "4000"
+		links:
+			- mongo
+		depends_on:
+			- "mongo"
+		restart: unless-stopped
+  	mongo:
+		container_name: mongo
+		image: mongo
+		expose:
+			- "27017"
+		volumes:
+        	- ./db:/data/db
