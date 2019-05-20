@@ -1,0 +1,183 @@
+form
+{
+    width: 60%;
+    margin: 0 auto;
+}
+
+
+
+#formDiv
+{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+
+.form-group
+{
+	background-color: rgba(23, 179, 178, 0.20);
+	color: #444;
+
+	border-style: solid;
+ 	border-width: 0px 0px 0px 6px;
+	border-color: rgba(23, 179, 178, 1);
+	padding: 15px;
+	flex: 1 1 30%;
+	margin: 5px;
+}
+
+#form .form-group
+{
+	background-color: rgba(0, 80, 200, 0.2);
+	border-color: rgb(0, 80, 200);
+}
+
+#search .form-group
+{
+	background-color: rgba(230, 92, 0, 0.20);
+	border-color: rgb(230, 92, 0);
+}
+
+.objectDisplay
+{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	flex: 1 1 55%;
+}
+
+.arrayDisplay
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	flex: 1 1 88%;
+}
+
+.smallArrayDisplay
+{
+	flex: 100 1 44%;
+}
+
+.width-4
+{
+	flex: 1 1 88%;
+	height: 120px;
+}
+
+span.label, .bigLabel
+{
+	display: block;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+input:-moz-read-only { /* For Firefox */
+  background-color: #EEE;
+}
+
+input:read-only {
+  background-color: #EEE;
+}
+
+textarea:-moz-read-only { /* For Firefox */
+  background-color: #EEE;
+}
+
+textarea:read-only {
+  background-color: #EEE;
+}
+/*
+.tagDiv
+{
+	background-color: white;
+	height: 36px;
+	width: calc(100% - 10px) !important;
+	overflow: scroll;
+	position: relative;
+}
+*/
+
+.choices
+{
+	border: 4px solid white;
+	border-radius: 2px;
+	padding-right: 17px;
+}
+
+.choices__item
+{
+	border-radius: 2px !important;
+}
+
+.form-control
+{
+	border: 4px solid white;
+	border-radius: 2px;
+	overflow: scroll;
+	width: 100%;
+	height: 36px;
+}
+
+
+input[type="submit"]
+{
+	display: block;
+	margin: 0 auto;
+	margin-top: 20px;
+
+	background-color: #FFF;
+	cursor: pointer;
+	padding: 6px;
+	border-radius: 8px;
+	width: 30%;
+}
+
+input[type="submit"]:hover
+{
+	background-color: #EEE;
+}
+
+textarea
+{
+	resize: none;
+	font-size: 1.5em;
+	line-height: 95%;
+	margin:0;
+	vertical-align:bottom;
+	overflow: visible;
+	height: 70% !important;
+}
+
+#resultsList
+{
+	width: 50%;
+	margin: 0 auto;
+}
+
+.elemResult
+{
+
+	display: block;
+
+	background-color: rgba(23, 179, 178, 0.20);
+	color: #444;
+
+	border-style: solid;
+ 	border-width: 0px 0px 0px 6px;
+	border-color: rgba(23, 179, 178, 1);
+	padding: 15px;
+
+	margin-bottom: 20px;
+
+	transition: background-color 0.3s ease;
+}
+
+.elemResult:hover
+{
+	background-color: rgba(23, 179, 178, 0.40);
+}
+

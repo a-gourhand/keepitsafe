@@ -1,0 +1,17 @@
+extends base.pug
+
+	
+block page-body
+	div#resultsList
+		- var parsedJson = JSON.parse(data)
+		each elem in parsedJson
+			+displayRow(elem)
+				
+
+
+mixin displayRow(objToDisplay)
+	a.elemResult(href=route+'/'+objToDisplay._id)
+		if(objToDisplay.title !== undefined)
+			span.name=objToDisplay.title
+		else 
+			span.name=objToDisplay.word

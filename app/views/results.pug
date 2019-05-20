@@ -1,0 +1,18 @@
+extends base.pug
+include mixins.pug
+	
+block page-body
+	div#resultsDiv
+		- var parsedJson = JSON.parse(data)
+		- if(!Array.isArray(parsedJson) && Object.keys(parsedJson).includes("__v")){delete parsedJson.__v}
+		- if(!Array.isArray(parsedJson) && Object.keys(parsedJson).includes("_id")){delete parsedJson._id}
+
+		
+		-console.log("RESULTS : ")
+		-console.log(parsedJson)
+		//-let specialAttribs = {"readonly":"readonly"}
+		form#form(method='POST' action=route+"/"+JSON.parse(data)._id)
+			div#formDiv
+				+displayObj(schema,[],parsedJson,specialAttribs)
+			input(type='hidden', name="_method", value="PUT")
+			input.submit(type='submit',value='Modifier')

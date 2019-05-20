@@ -1,0 +1,15 @@
+extends base.pug
+include mixins.pug
+
+block page-body
+		form#form(method='POST' action=route)
+			div#formDiv
+				+displayObj(schema)
+			input.submit(type='submit',value='Envoyer le formulaire')
+
+
+
+
+						
+			
+				
