@@ -46,6 +46,7 @@ nav
 	padding: 20px;
 	background: #232323;
 	transition: width 0.3s ease;
+	font-size: 0.9em;
 
 	border-right: 6px solid rgb(243,200,17);
 }

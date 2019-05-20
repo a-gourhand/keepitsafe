@@ -29,7 +29,7 @@
 	},
 	"website" :{
 		"form" : "Formulaire",
-		"index" : "Thésaurus",
+		"index" : "Accueil",
 		"search" : "Recherche",
 		"send_form" : "Envoyer le formulaire",
 		"results" : "Résultats",

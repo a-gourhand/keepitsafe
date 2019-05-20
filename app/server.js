@@ -66,8 +66,8 @@ function openProject(app_, projectName_){
 	});
 }
 
-openProject(app,"thesaurus")
-//openProject(app,"keepitsafe")
+//openProject(app,"thesaurus")
+openProject(app,"keepitsafe")
 
 /* === OPENED PORTS === */
 app.listen(config.PORT, function(){
