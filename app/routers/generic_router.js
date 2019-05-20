@@ -1,4 +1,4 @@
-const locale        = require('../../locale/fr-FR')
+const locale        = require('../locale/fr-FR')
 const pug_helper    = require('../pug_helper')
 const expressRouter = require('express').Router
 const uuidv1        = require('uuid/v1')

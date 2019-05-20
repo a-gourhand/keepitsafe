@@ -38,10 +38,10 @@ app.use('/choicesjs/',express.static(__dirname + '/node_modules/choices.js/publi
 function openProject(app_, projectName_){
 
 	const router    = app_.locals.routers.createRouter();
-	const metadata  = require('../structures/'+projectName_+'/metadata.json')
-	const locale    = require('../structures/'+projectName_+'/locale/fr-FR.json')
-	const schema 		= require('../structures/'+projectName_+'/schema.json')
-	const defaultSchema = require('../structures/default/schema.json')
+	const metadata  = require('structures/'+projectName_+'/metadata.json')
+	const locale    = require('structures/'+projectName_+'/locale/fr-FR.json')
+	const schema 		= require('structures/'+projectName_+'/schema.json')
+	const defaultSchema = require('structures/default/schema.json')
 	const mergedSchema = {
 		...schema,
 		...defaultSchema
