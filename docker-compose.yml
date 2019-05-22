@@ -8,6 +8,8 @@ services:
    - "80:80"
   links:
    - app
+  volumes:
+   - /etc/nginx/htpasswd/:/etc/nginx/htpasswd/
 
  app:
   container_name: app
