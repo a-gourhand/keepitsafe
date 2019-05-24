@@ -9,7 +9,7 @@ services:
   links:
    - app
   volumes:
-   - /etc/nginx/htpasswd/:/etc/nginx/htpasswd/
+   - /etc/nginx/htpasswd/:/etc/nginx/htpasswd/:ro
 
  app:
   container_name: app
