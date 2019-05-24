@@ -28,7 +28,7 @@ html
 				a.menuContainer(class='nav-button' href=base_route+'/')
 					img(src='/Icons/home.png')
 					p.menuTransitions=locale.website.index
-				if typeof base_route !== "undefined" || base_route !== '/'
+				if typeof base_route !== "undefined" && base_route !== '/'
 					a.menuContainer(class='nav-button' href=base_route+'/form')
 						img(src='/Icons/document.png')
 						p.menuTransitions=locale.website.form
