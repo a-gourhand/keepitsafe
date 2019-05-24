@@ -1,6 +1,16 @@
 extends base.pug
-
-	
-block page-body
-	img#indexLogo(src='Images/logo_large.png')
 				
+block page-body
+	div#resultsList
+		each project in openedProjects
+			+displayRow(project)
+				
+
+
+mixin displayRow(project)
+	if base_route == project.route
+		a.elemResult.currentResult(href=project.route)
+			span.name=project.name
+	else
+		a.elemResult(href=project.route)
+			span.name=project.name

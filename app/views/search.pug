@@ -2,7 +2,7 @@ extends base.pug
 include mixins.pug
 	
 block page-body
-	form#search(method='GET' action=route)
+	form#search(method='GET' action=base_route+data_route)
 			div#formDiv
 				+displayObj(schema)
 			input.submit(type='submit',value='Chercher')

@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     $("#menuFirst").on("click",function(event){
   		console.log(sessionStorage.getItem('menuOpened'))
-  		if($("nav").css("width") == "160px"){
+  		if($("nav").css("width") == "200px"){
   			$(".menuContainer p").css("opacity","0")
   			setTimeout(function(){
   				$(".menuContainer p").css("display","none")
@@ -14,8 +14,8 @@ $(document).ready(function(){
   			sessionStorage.setItem('menuOpened', false);
   		}
   		else{
-  			$("nav").css("width","160px")
-  			$("#pageBlock").css("margin-left","200px")
+  			$("nav").css("width","200px")
+  			$("#pageBlock").css("margin-left","240px")
   			setTimeout(function(){
   				$(".menuContainer p").css("display","inline")
   				setTimeout(function(){

@@ -11,7 +11,7 @@ block page-body
 		-console.log("RESULTS : ")
 		-console.log(parsedJson)
 		//-let specialAttribs = {"readonly":"readonly"}
-		form#form(method='POST' action=route+"/"+JSON.parse(data)._id)
+		form#form(method='POST' action=base_route+data_route+"/"+JSON.parse(data)._id)
 			div#formDiv
 				+displayObj(schema,[],parsedJson,specialAttribs)
 			input(type='hidden', name="_method", value="PUT")

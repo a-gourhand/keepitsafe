@@ -1,6 +1,6 @@
 {
 	"project_name" : "Keep it Safe",
 	"model_name" : "Info",
-	"resource_route" : "/info",
-	"collection_route" : "/infos"
+	"base_route" : "/keepitsafe",
+	"data_route" : "/data"
 }

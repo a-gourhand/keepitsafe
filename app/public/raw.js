@@ -3,8 +3,8 @@ if(sessionStorage.getItem('menuOpened')=="true"){
   $("#pageBlock").css("transition","margin-left 0s ease")
   $(".menuContainer p").css("transition","opacity 0s ease")
 
-  $("nav").css("width","160px")
-  $("#pageBlock").css("margin-left","200px")
+  $("nav").css("width","200px")
+  $("#pageBlock").css("margin-left","240px")
   $(".menuContainer p").css("display","inline")
   $(".menuContainer p").css("opacity","1")
 

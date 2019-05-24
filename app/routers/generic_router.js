@@ -6,11 +6,11 @@ const mongoose   = require('mongoose')
 const jp = require('jsonpath')
 
 
-function createCollectionRouting(router, route, res_route, Model, schema){
+function createCollectionRouting(router, base_route, data_route, Model, schema){
 
     /* === MIDDLEWARE === */
 
-    router.use(route, (req, res, next)=>{
+    router.use(data_route, (req, res, next)=>{
         switch(req.method){
             case "POST":
                 next()
@@ -45,10 +45,10 @@ function createCollectionRouting(router, route, res_route, Model, schema){
 
     /* === CRUD === */
 
-    router.route(route)
+    router.route(data_route)
     .get((req, res) => {
         if(req.accepts('html')){
-            res.render('results_list', { title: 'results', route: res_route, data:JSON.stringify(req.results),locale:locale})
+            res.render('results_list', { title: 'results', data_route: data_route, base_route: base_route, data:JSON.stringify(req.results),locale:locale})
         } else {
             res.json(req.results)
         }
@@ -75,7 +75,7 @@ function createCollectionRouting(router, route, res_route, Model, schema){
         newObject.save()
 
         if(req.accepts('html')){
-            res.render('results', { title: 'results',route: res_route, data:JSON.stringify(req.body),locale:locale,schema:schema})
+            res.render('results', { title: 'results',data_route: data_route, base_route: base_route, data:JSON.stringify(req.body),locale:locale,schema:schema})
         } else {
             res.status(201).send(newObject)
         }
@@ -114,11 +114,11 @@ function createCollectionRouting(router, route, res_route, Model, schema){
     })
 }
 
-function createResourceRouting(router, route, Model, schema){
+function createResourceRouting(router, base_route, data_route, Model, schema){
 
     /* === MIDDLEWARE === */
 
-    router.use(route+'/:req_id', (req, res, next)=>{
+    router.use(data_route+'/:req_id', (req, res, next)=>{
         if(req.body._method){
             req.method = req.body._method
             delete req.body._method
@@ -146,11 +146,11 @@ function createResourceRouting(router, route, Model, schema){
 
     /* === CRUD === */
 
-    router.route(route+'/:req_id')
+    router.route(data_route+'/:req_id')
     .get((req, res) => {
 
         if(req.accepts('html')){
-            res.render('results', { title: 'results',route: route, data:JSON.stringify(req.result),locale:locale, schema:schema})
+            res.render('results', { title: 'results',data_route: data_route, base_route: base_route, data:JSON.stringify(req.result),locale:locale, schema:schema})
         } else {
             res.json(req.results)
         }
@@ -178,7 +178,7 @@ function createResourceRouting(router, route, Model, schema){
 
         Model.findOneAndUpdate({_id:req.params.req_id}, req.body, {new:true}, function (err, updated) {
             if(req.accepts('html')){
-                res.render('results', { title: 'results',route: route, data:JSON.stringify(updated),locale:locale, schema:schema})
+                res.render('results', { title: 'results',data_route: data_route, base_route: base_route, data:JSON.stringify(updated),locale:locale, schema:schema})
             } else {
                 res.json(results)
             }
@@ -208,9 +208,9 @@ function createResourceRouting(router, route, Model, schema){
     })
 }
 
-function createRouting(router, route, res_route, Model, schema){
-    createCollectionRouting(router, route, res_route, Model, schema)
-    createResourceRouting(router, res_route, Model, schema)
+function createRouting(router, base_route, data_route, Model, schema){
+    createCollectionRouting(router, base_route, data_route, Model, schema)
+    createResourceRouting(router, base_route, data_route, Model, schema)
 
 }
 

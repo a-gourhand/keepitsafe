@@ -1,6 +1,6 @@
 {
 	"project_name" : "Thesaurus",
 	"model_name" : "Word",
-	"resource_route" : "/word",
-	"collection_route" : "/words"
+	"base_route" : "/thesaurus",
+	"data_route" : "/data"
 }

@@ -25,15 +25,16 @@ html
 				img(src='/Icons/menu.png')
 				p=locale.website.menu
 			div#menu
-				a.menuContainer(class='nav-button' href='/')
+				a.menuContainer(class='nav-button' href=base_route+'/')
 					img(src='/Icons/home.png')
 					p.menuTransitions=locale.website.index
-				a.menuContainer(class='nav-button' href='/form')
-					img(src='/Icons/document.png')
-					p.menuTransitions=locale.website.form
-				a.menuContainer(class='nav-button' href='/search')
-					img(src='/Icons/search.png')
-					p.menuTransitions=locale.website.search
+				if typeof base_route !== "undefined"
+					a.menuContainer(class='nav-button' href=base_route+'/form')
+						img(src='/Icons/document.png')
+						p.menuTransitions=locale.website.form
+					a.menuContainer(class='nav-button' href=base_route+'/search')
+						img(src='/Icons/search.png')
+						p.menuTransitions=locale.website.search
 
 
 		

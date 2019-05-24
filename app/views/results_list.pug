@@ -10,7 +10,7 @@ block page-body
 
 
 mixin displayRow(objToDisplay)
-	a.elemResult(href=route+'/'+objToDisplay._id)
+	a.elemResult(href=base_route+data_route+'/'+objToDisplay._id)
 		if(objToDisplay.title !== undefined)
 			span.name=objToDisplay.title
 		else 
