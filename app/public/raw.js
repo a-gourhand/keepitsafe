@@ -14,4 +14,3 @@ if(sessionStorage.getItem('menuOpened')=="true"){
     $("#pageBlock").css("transition","margin-left 0.3s ease")
   },4)
 }
-

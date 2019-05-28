@@ -68,7 +68,7 @@ form
 	height: 120px;
 }
 
-span.label, .bigLabel
+div.titlebar
 {
 	display: block;
 	width: 100%;
@@ -103,14 +103,26 @@ textarea:read-only {
 
 .choices
 {
-	border: 4px solid white;
 	border-radius: 2px;
-	padding-right: 17px;
+	padding-right: 10px;
 }
 
 .choices__item
 {
 	border-radius: 2px !important;
+	background-color: #DDD !important;
+	border: 1px solid #BBB !important;
+	color: black !important;
+	margin-bottom: 1.5px !important;
+}
+
+.choices__inner
+{
+	border: 0px !important;
+	border-radius: 2px !important;
+	min-height: 20px !important;
+	padding: 5px !important;
+	padding-bottom: 0px !important;
 }
 
 .form-control
@@ -181,3 +193,43 @@ textarea
 	background-color: rgba(23, 179, 178, 0.40);
 }
 
+
+
+.tooltip {
+  position: relative;
+	border-bottom: 1px dotted black;
+	float: right;
+}
+
+.tooltip .tooltiptext {
+	visibility: hidden;
+	opacity: 0;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+	margin-left: -60px;
+	transition: opacity 0.5s ease-in-out 0.5s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+	opacity: 1;
+  visibility: visible;
+}

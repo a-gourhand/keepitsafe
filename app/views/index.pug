@@ -9,8 +9,8 @@ block page-body
 
 mixin displayRow(project)
 	if base_route == project.route
-		a.elemResult.currentResult(href=project.route)
+		a.elemResult.currentResult(href=project.route+"/form")
 			span.name=project.name
 	else
-		a.elemResult(href=project.route)
+		a.elemResult(href=project.route+"/form")
 			span.name=project.name

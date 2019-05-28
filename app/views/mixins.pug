@@ -18,17 +18,17 @@ mixin displayObj(objToDisplay, currentKey=[], values, attribs)
 						+displayTags(currentKey, key, objToDisplay[key][0],values,attribs)
 				else 
 					div.form-group.arrayDisplay(class=key class="width-"+width class="height-"+height)
-						span.bigLabel= locale.schema[key]
+						+displayTitleAndTooltip(key)
 						div.objectDisplay
 							+displayObj(objToDisplay[key][0],currentKey.concat([key,0]),values,attribs)
 
 			else if typeof(objToDisplay) === "object"
 				div.form-group.objectDisplay(class=key class="width-"+width class="height-"+height)
-					span.bigLabel= locale.schema[key]
+					+displayTitleAndTooltip(key)
 					+displayObj(objToDisplay[key],currentKey.concat([key]),values,attribs)
 
 mixin displayForm(currentKey, key, objToDisplay, values, attribs)
-	span.label= locale.schema[key]
+	+displayTitleAndTooltip(key)
 	- var current_type = "none"
 	case objToDisplay.type
 		when "String"
@@ -56,7 +56,7 @@ mixin displayForm(currentKey, key, objToDisplay, values, attribs)
 		input.form-control(type=current_type, name=keystring, value=value)&attributes(attribs)
 
 mixin displayTags(currentKey, key, objToDisplay, values, attribs)
-	span.label= locale.schema[key]
+	+displayTitleAndTooltip(key)
 
 	-let combinedKeys = currentKey.concat([key])
 	-let keystring = pug_helper.propListToString(combinedKeys)
@@ -67,3 +67,9 @@ mixin displayTags(currentKey, key, objToDisplay, values, attribs)
 
 	input.form-control.tagDiv(id="tag-"+keystring,type="text")
 	input(id="hidden-"+keystring, type="hidden", name=keystring, value=value)
+
+mixin displayTitleAndTooltip(key)
+	div.titlebar
+		span.bigLabel= locale.schema[key]
+		div.tooltip ?
+			span.tooltiptext texte
