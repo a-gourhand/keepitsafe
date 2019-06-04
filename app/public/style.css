@@ -124,10 +124,21 @@ nav
 
 h1
 {
-	margin-bottom: 20px;
+	
 	font-size: 3em;
+	margin: auto;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 100%;
+}
+
+h2.subtitle
+{
+	
+	font-size: 1.75em;
 	margin: auto;
 	text-align: center;
 	width: 100%;
 	margin-bottom: 20px;
+	font-weight: normal;
 }

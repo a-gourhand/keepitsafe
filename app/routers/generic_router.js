@@ -1,16 +1,13 @@
-const locale        = require('../locale/fr-FR')
-const pug_helper    = require('../pug_helper')
-const expressRouter = require('express').Router
 const uuidv1        = require('uuid/v1')
-const mongoose   = require('mongoose')
-const jp = require('jsonpath')
+const jp            = require('jsonpath')
 
+const pug_helper    = require('../pug_helper')
+const render    = require('../render.js')
 
-function createCollectionRouting(router, base_route, data_route, Model, schema){
+function createCollectionRouting(project){
 
     /* === MIDDLEWARE === */
-
-    router.use(data_route, (req, res, next)=>{
+    project.router.use(project.metadata.data_route, (req, res, next)=>{
         switch(req.method){
             case "POST":
                 next()
@@ -24,14 +21,14 @@ function createCollectionRouting(router, base_route, data_route, Model, schema){
                 //console.log("nodes", nodes)
                 var clean = pug_helper.removeEmpty(nodes)
                 //console.log("clean",clean)
-                var nodeProps = pug_helper.getNodeProps(clean, schema)
+                var nodeProps = pug_helper.getNodeProps(clean, project.schema)
                 //console.log("props", nodeProps)
                 var parsedData = pug_helper.parseData(nodeProps)
                 //console.log("parsed", parsedData)
                 var searchReadyObj = pug_helper.prepareObjForSearch(parsedData)
                 console.log("search", searchReadyObj)
             
-                Model.find(searchReadyObj, (err,results)=>{
+                project.Model.find(searchReadyObj, (err,results)=>{
                     console.log("found", results)
                     if(err)
                         res.status(500).send(err)
@@ -45,10 +42,11 @@ function createCollectionRouting(router, base_route, data_route, Model, schema){
 
     /* === CRUD === */
 
-    router.route(data_route)
+    project.router.route(project.metadata.data_route)
     .get((req, res) => {
         if(req.accepts('html')){
-            res.render('results_list', { title: 'results', data_route: data_route, base_route: base_route, data:JSON.stringify(req.results),locale:locale})
+            let payload = { title: 'results', data:JSON.stringify(req.results) }
+            render.renderPage(res,'results_list',payload,project)
         } else {
             res.json(req.results)
         }
@@ -62,7 +60,7 @@ function createCollectionRouting(router, base_route, data_route, Model, schema){
         console.log(req.body)
 
         let nodes = pug_helper.getLeavesAndData(req.body)
-        let nodesWProps = pug_helper.getNodeProps(nodes,schema)
+        let nodesWProps = pug_helper.getNodeProps(nodes,project.schema)
         let parsedData = pug_helper.parseData(nodesWProps)
 
         parsedData.forEach(function(e){
@@ -71,11 +69,12 @@ function createCollectionRouting(router, base_route, data_route, Model, schema){
             })
         })
 
-        let newObject = new Model(req.body);
+        let newObject = new project.Model(req.body);
         newObject.save()
 
         if(req.accepts('html')){
-            res.render('results', { title: 'results',data_route: data_route, base_route: base_route, data:JSON.stringify(req.body),locale:locale,schema:schema})
+            let payload = {title: 'results', data:JSON.stringify(req.body)}
+            render.renderPage(res,'results',payload,project)
         } else {
             res.status(201).send(newObject)
         }
@@ -114,11 +113,11 @@ function createCollectionRouting(router, base_route, data_route, Model, schema){
     })
 }
 
-function createResourceRouting(router, base_route, data_route, Model, schema){
+function createResourceRouting(project){
 
     /* === MIDDLEWARE === */
 
-    router.use(data_route+'/:req_id', (req, res, next)=>{
+    project.router.use(project.metadata.data_route+'/:req_id', (req, res, next)=>{
         if(req.body._method){
             req.method = req.body._method
             delete req.body._method
@@ -131,7 +130,7 @@ function createResourceRouting(router, base_route, data_route, Model, schema){
                 next()
                 break
             default :
-                Model.findById( req.params.req_id, (err,result)=>{
+                project.Model.findById( req.params.req_id, (err,result)=>{
                     if(err)
                         res.status(500).send(err)
                     else {
@@ -146,17 +145,18 @@ function createResourceRouting(router, base_route, data_route, Model, schema){
 
     /* === CRUD === */
 
-    router.route(data_route+'/:req_id')
+    project.router.route(project.metadata.data_route+'/:req_id')
     .get((req, res) => {
 
         if(req.accepts('html')){
-            res.render('results', { title: 'results',data_route: data_route, base_route: base_route, data:JSON.stringify(req.result),locale:locale, schema:schema})
+            let payload = {title: 'results', data:JSON.stringify(req.result)}
+            render.renderPage(res,'results',payload,project)
         } else {
             res.json(req.results)
         }
     })
     .post((req,res) => {
-        let result = new Model(req.body);
+        let result = new  project.Model(req.body);
         result.save()
         res.status(201).send(result)
     })
@@ -167,7 +167,7 @@ function createResourceRouting(router, base_route, data_route, Model, schema){
         req.body.last_modification = new Date()
 
         let nodes = pug_helper.getLeavesAndData(req.body)
-        let nodesWProps = pug_helper.getNodeProps(nodes,schema)
+        let nodesWProps = pug_helper.getNodeProps(nodes,project.schema)
         let parsedData = pug_helper.parseData(nodesWProps)
 
         parsedData.forEach(function(e){
@@ -176,9 +176,10 @@ function createResourceRouting(router, base_route, data_route, Model, schema){
             })
         })
 
-        Model.findOneAndUpdate({_id:req.params.req_id}, req.body, {new:true}, function (err, updated) {
+        project.Model.findOneAndUpdate({_id:req.params.req_id}, req.body, {new:true}, function (err, updated) {
             if(req.accepts('html')){
-                res.render('results', { title: 'results',data_route: data_route, base_route: base_route, data:JSON.stringify(updated),locale:locale, schema:schema})
+                let payload = {title: 'results', data:JSON.stringify(updated)}
+                render.renderPage(res,'results',payload,project)
             } else {
                 res.json(results)
             }
@@ -208,13 +209,12 @@ function createResourceRouting(router, base_route, data_route, Model, schema){
     })
 }
 
-function createRouting(router, base_route, data_route, Model, schema){
-    createCollectionRouting(router, base_route, data_route, Model, schema)
-    createResourceRouting(router, base_route, data_route, Model, schema)
+function createRouting(project){
+    createCollectionRouting(project)
+    createResourceRouting(project)
 
 }
 
 module.exports = {
-    createRouting: createRouting,
-    createRouter: expressRouter
+    createRouting: createRouting
 }

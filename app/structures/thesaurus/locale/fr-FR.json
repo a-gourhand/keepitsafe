@@ -1,12 +1,6 @@
 {
 	"schema" :{
-		"organisation_provider" : "Fournisseur du service",
-		"organisation_content_manager" : "Responsable du contenu",
-		"created_by":"Responsable de la ressource",
-		"creation_date" : "Date de création",
-		"modified_by":"Dernière modification par ",
-		"last_modification_date" : ", le",
-
+		"project_name":"Thésaurus",
 		"word" : "Mot",
 		"context" : "Contexte",
 		"organisation" : "Organisation",
@@ -18,14 +12,5 @@
 		"name" : "Nom",
 		"name_in_contexts" : "Nom par contexte"
 
-	},
-	"website" :{
-		"form" : "Formulaire",
-		"index" : "Thésaurus",
-		"search" : "Recherche",
-		"send_form" : "Envoyer le formulaire",
-		"results" : "Résultats",
-		"research" : "Rechercher",
-		"menu" : "Menu"
 	}
 }

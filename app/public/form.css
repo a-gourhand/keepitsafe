@@ -5,7 +5,6 @@ form
 }
 
 
-
 #formDiv
 {
 	display: flex;
@@ -153,7 +152,7 @@ input[type="submit"]:hover
 	background-color: #EEE;
 }
 
-textarea
+textarea.form-control
 {
 	resize: none;
 	font-size: 1.5em;
@@ -201,35 +200,74 @@ textarea
 	float: right;
 }
 
-.tooltip .tooltiptext {
+.tooltipdiv {
 	visibility: hidden;
 	opacity: 0;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
+	transition: all 0.4s ease-in-out;
+	padding: 12px;
+	min-width: 200px;
+	width: 16.8%;
+	min-height: 100px !important;
+	height:400px;
+  background-color: #333;
+	color: #EEE;
+	text-align: left;
+	border-radius: 6px;
+	border-style: outset;
+  position: fixed;
   z-index: 1;
-  bottom: 150%;
-  left: 50%;
-	margin-left: -60px;
-	transition: opacity 0.5s ease-in-out 0.5s;
+  top: 16%;
+  right: 1%;
+	margin-left: -200px;
+	font-size: 1.3em;
+	font-weight: bold;
 }
 
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
+.tooltipdiv .tooltiptext {
+	background-color: #333;
+	color: #EEE;
+	text-align: left;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 82%;
+	font-size: 1.3em;
+	border: none;	
+
 }
 
-.tooltip:hover .tooltiptext {
+.tooltipdiv .tooltiptext:not([disabled]) {
+	background-color: #555;
+}
+
+
+/*
+.tooltip:hover .tooltipdiv {
 	opacity: 1;
   visibility: visible;
+}
+
+.tooltipdiv:hover .tooltipdiv {
+	opacity: 1;
+  visibility: visible;
+}
+*/
+
+.tooltipbtn.tooltipmod {
+	width: 100%;
+}
+
+.tooltipbtn.tooltipvalidate {
+	display: none;
+	width: 48%;
+}
+
+.tooltipbtn.tooltipcancel {
+	width: 48%;
+	display: none;
+	float: right;
+}
+
+span.helpid {
+	display:none;
 }

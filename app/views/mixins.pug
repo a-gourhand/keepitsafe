@@ -72,4 +72,12 @@ mixin displayTitleAndTooltip(key)
 	div.titlebar
 		span.bigLabel= locale.schema[key]
 		div.tooltip ?
-			span.tooltiptext texte
+			div.tooltipdiv=locale.schema[key]
+				if descriptions && descriptions[key]
+					textarea.tooltiptext.autoexpand(disabled)=descriptions[key]
+				else 
+					textarea.tooltiptext.autoexpand(disabled)
+				button.tooltipbtn.tooltipmod(type="button") Modifier
+				button.tooltipbtn.tooltipvalidate(type="button") Valider
+				button.tooltipbtn.tooltipcancel(type="button") Annuler
+				span.helpid=key

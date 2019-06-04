@@ -1,5 +1,6 @@
 {
 	"project_name" : "Keep it Safe",
+	"raw_project_name" : "keepitsafe",
 	"model_name" : "Info",
 	"base_route" : "/keepitsafe",
 	"data_route" : "/data"

@@ -5,9 +5,7 @@ html
 		
 
 		link(rel='stylesheet', href='/style.css', type='text/css')
-		script(src="/jquery-3.4.0.slim.min.js",
-			  integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI=",
-			  crossorigin="anonymous")
+		script(src="/jquery/jquery.min.js")
 		script(src="/ui.js")
 		script(src="/script.js")
 		//link(href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet")
@@ -41,6 +39,7 @@ html
 		div#pageBlock.menuTransitions
 			div#contentBlock
 				h1= locale.website[title]
+				h2.subtitle= locale.schema.project_name
 				block page-body
 		script
 			include ../public/raw.js
