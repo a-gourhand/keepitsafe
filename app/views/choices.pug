@@ -1,0 +1,25 @@
+html
+	head
+		title= locale.website[title]
+
+		
+
+		link(rel='stylesheet', href='/style.css', type='text/css')
+		script(src="/jquery/jquery.min.js")
+		script(src="/ui.js")
+		script(src="/script.js")
+		link(rel="icon" type="image/png" href="/Icons/logo_small.png")
+
+		link(href="/choicesjs/styles/choices.min.css" rel="stylesheet")
+		script(src="/choicesjs/scripts/choices.min.js")
+
+		
+		
+	body
+
+		div#pageBlock.menuTransitions
+			div#contentBlock
+				h1= locale.website[title]
+				h2.subtitle= locale.schema.project_name
+
+

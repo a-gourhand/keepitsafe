@@ -5,7 +5,7 @@ function createRouting(project){
 
     /* === WEBPAGES SETUP === */
     project.router.get('/form', function (req, res) {
-        render.renderPage(res,'formulaire',{title: 'form'},project)
+        render.renderPage(res,'form',{title: 'form'},project)
     });
 
     project.router.get('/search', function (req, res) {
@@ -32,6 +32,10 @@ function createRouting(project){
                 console.log(err)
             })
         });
+    })
+
+    project.router.get('/choices', function(req,res){
+        render.renderPage(res,'choices',{title:'choices'},project)
     })
 }
 
