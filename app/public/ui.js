@@ -39,8 +39,9 @@ $(document).ready(function(){
 	});
 	  
 	var choicesElems = Array.from(document.querySelectorAll('[id^=tag-]'))
-							.map(e => new Choices(e))
-
+	.map(e => new Choices(e,{
+		duplicateItemsAllowed:false
+	}))
 
 	choicesElems.forEach(function(e){
 		let node = e.passedElement.element
@@ -54,15 +55,41 @@ $(document).ready(function(){
 		
 		if(hiddenInput.value != "" && hiddenInput.value != "[]"){
 			e.removeActiveItems()
-			e.setValue(JSON.parse(hiddenInput.value).filter(e => e!==""))
+			let values = JSON.parse(hiddenInput.value).filter(e => e!=="")
+			console.log(e)
+			let choicesValues = values.filter(v => v)
+			e.setValue(values)
 		}
 	})
 
-	//Help Menu
-	if(!sessionStorage.getItem("lastMod"))
-		sessionStorage.setItem("lastMod", '')
+	getJSON("/locale",function(response){
+		choicesElems.forEach(function(e){
+			e.config.noChoicesText  = response.website.noChoicesText
+			e.config.noResultsText  = response.website.noResultsText
+			e.config.itemSelectText = response.website.itemSelectText
+			e.config.loadingText 	= response.website.loadingText
+		})
+
+	})
 	
-	$("textarea.tooltiptext:not([disabled])").first().val(sessionStorage.getItem("lastMod"))
+	getJSON("/choices",function(response){
+		choicesElems.forEach(function(e){
+			let id = e.passedElement.element.attributes.key.value
+			if(!response[id]) return
+			let choicesToSet = response[id].map(function(respElem){
+				return {value:respElem.name,label:respElem.name,customProperties:{link:respElem.link}}
+			})
+			e.setChoices(choicesToSet,"value","label",true)
+			
+		})
+
+	})
+
+	//Help Menu
+	if(!sessionStorage.getItem("help_lastMod"))
+		sessionStorage.setItem("help_lastMod", '')
+	
+	$("textarea.tooltiptext:not([disabled])").first().val(sessionStorage.getItem("help_lastMod"))
 	$("textarea.tooltiptext:not([disabled])").first().attr("disabled","disabled")
 
 	$("div.tooltip").on("click",function(e){
@@ -81,36 +108,129 @@ $(document).ready(function(){
 
 	$(".tooltipbtn.tooltipmod").on("click",function(){
 		$("textarea.tooltiptext:not([disabled])").siblings("button").toggle()
-		$("textarea.tooltiptext:not([disabled])").first().val(sessionStorage.getItem("lastMod"))
+		$("textarea.tooltiptext:not([disabled])").first().val(sessionStorage.getItem("help_lastMod"))
 		$("textarea.tooltiptext:not([disabled])").first().attr("disabled","disabled")
 		
-		sessionStorage.setItem('lastMod', $(this).siblings("textarea").first().val())
-		console.log("Saved :",sessionStorage.getItem('lastMod'))
+		sessionStorage.setItem('help_lastMod', $(this).siblings("textarea").first().val())
+		console.log("Saved :",sessionStorage.getItem('help_lastMod'))
 		$(this).siblings("textarea").removeAttr("disabled")
 		$(this).siblings("button").toggle()
 		$(this).toggle()
 	})
 
 	$(".tooltipbtn.tooltipcancel").on("click",function(){
-		console.log("Loaded : ",sessionStorage.getItem('lastMod'))
-		$(this).siblings("textarea").first().val(sessionStorage.getItem('lastMod'))
+		console.log("Loaded : ",sessionStorage.getItem('help_lastMod'))
+		$(this).siblings("textarea").first().val(sessionStorage.getItem('help_lastMod'))
 		$(this).siblings("textarea").attr("disabled","disabled")
 		$(this).siblings("button").toggle()
 		$(this).toggle()
 	})
 
 	$(".tooltipbtn.tooltipvalidate").on("click",function(){
-		sessionStorage.setItem('lastMod','')
+		sessionStorage.setItem('help_lastMod','')
 		$(this).siblings("textarea").attr("disabled","disabled")
 		$(this).siblings("button").toggle()
 		$(this).toggle()
 
-		$.post( "/"+window.location.pathname.split("/")[1]+"/help", { [$(this).siblings("span.helpid").first().text()] : $(this).siblings("textarea").first().val()})
+		$.post( "/"+window.location.pathname.split("/")[1]+"/help",
+				{ [$(this).siblings("span.helpid").first().text()] : $(this).siblings("textarea").first().val()}
+			)
 		.done(function( data ) {
 			alert( "Data Loaded: " + data );
 		});
 	})
 
+	//add choices
 
+	//Observers are needed to add events to buttons only once, dynamically.
+	MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+	var observer = new MutationObserver(function(mutations, observer) {
+		mutations.filter(m => m.type == "childList").forEach(function(m){
+			m.addedNodes.forEach(function(e){
+				setChoicesEvents(e)
+			})
+		})
+	});
+
+	observer.observe(document.body, {
+		subtree: true,
+		attribute: true,
+		childList: true,
+		characterData: true,
+		attributeOldValue: true,
+		characterDataOldValue: true
+	});
+
+	if(!sessionStorage.getItem("choices_lastMod"))
+		sessionStorage.setItem("choices_lastMod", '')
+
+	function setChoicesEvents(e){
+		$(e).children(".modifyChoice").on("click",function(e){
+			$(this).siblings("input").each(function(i){
+				$(this).attr("savedVal",$(this).val())
+			})
+			$(this).siblings("input").removeAttr("readonly")
+			$(this).parent().children("button").toggle()
+		})
+	
+		$(e).children(".removeChoice").on("click",function(e){
+			$(this).parent().remove()
+		})
+
+		$(e).children(".validateModificationChoice").on("click",function(e){
+			$(this).siblings("input").each(function(i){
+				$(this).attr("savedVal","")
+			})
+			$(this).siblings("input").attr("readonly","readonly")
+			$(this).parent().children("button").toggle()
+
+		})
+
+		$(e).children(".cancelModifyChoice").on("click",function(e){
+
+			$(this).siblings("input").each(function(i){
+				if(!$(this)[0].hasAttribute("savedVal")){
+					$(this).parent().remove()
+					return
+				}
+				$(this).val($(this).attr("savedVal"))
+			})
+			
+			$(this).siblings("input").attr("readonly","readonly")
+			$(this).parent().children("button").toggle()
+		})
+	}
+
+	setChoicesEvents(".addedChoice")
+
+	$(".addchoice").on("click",function(){
+		
+		$(this).before($("#choiceTemplate").html())
+
+		let group = $(this).parent()
+		$(this).prev().children("input").each(function(elem){
+			let name = group.attr("hiddenKey")+"["+group.children(".addedChoice").length+"]["+$(this).attr("hiddenname")+"]"
+			$(this).attr("name",name)
+		})
+	})
+
+	$(".sentData").children("button").toggle()
+	$(".sentData").children("input").attr("readonly","readonly")
+	
 
 });
+
+
+//Get Json at the specified route
+function getJSON(route,callback){
+	$.ajax({     
+		headers: {          
+		  Accept: "application/json; charset=utf-8",         
+		  "Content-Type": "application/json; charset=utf-8"   
+		},
+		url: "/"+window.location.pathname.split("/")[1]+route,
+		data: "data",    
+		success : (e => callback(e))
+	  });
+}

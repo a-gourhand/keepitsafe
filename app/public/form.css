@@ -199,6 +199,10 @@ textarea.form-control
 	margin-right: 10px;
 }
 
+.has-no-choices{
+	margin-bottom:0px !important;
+}
+
 .tooltip {
   position: relative;
 	border-bottom: 1px dotted black;
@@ -275,4 +279,77 @@ textarea.form-control
 
 span.helpid {
 	display:none;
+}
+
+#choicesdiv {
+	width: 60%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.addedGroup {
+	display: flex;
+	flex-direction: column;
+}
+
+#choiceTemplate {
+	display: none;
+}
+
+.addChoice{
+	margin-top:15px;
+	width: 30%;
+	align-self: center;
+}
+
+.modifyChoice{
+	display:none;
+}
+
+.removeChoice{
+	display:none;
+}
+
+.addedChoice{
+	padding: 10px;
+}
+
+.addedChoice input{
+	border: 4px solid white;
+	border-radius: 2px;
+	height: 36px;
+	margin-right: 5%;
+}
+
+input.nameInput{
+	width : 25%;
+}
+
+input.linkInput{
+	width : 30%;
+}
+
+.addedChoice span {
+	margin-right: 10px;
+}
+
+.addedChoice button {
+	float: right;
+	margin-left:10px;
+}
+
+.addedChoice:nth-child(odd) {
+  background: #DDD;
+}
+
+#sendChoices {
+	margin-top: 20px;
+	align-self: center;
+	width: 30%;
+}
+
+a {
+	color : #333;
+	text-decoration: none;	
 }

@@ -1,15 +1,33 @@
+mixin displayRow(groupKey,rowKey,rowToDisplay)
+	div.addedChoice.sentData
+		span Nom
+		input(type=text, value=rowToDisplay.name name=groupKey+"["+rowKey+"][name]").nameInput
+		span Lien
+		input(type=text, value=rowToDisplay.link name=groupKey+"["+rowKey+"][link]").linkInput
+
+		button(type="button").cancelModifyChoice Annuler
+		button(type="button").validateModificationChoice Valider
+
+		button(type="button").removeChoice Supprimer
+		button(type="button").modifyChoice Modifier
+
+mixin displayGroup(groupKey, groupToDisplay)
+	div(hiddenKey=groupKey).addedGroup
+		each key in Object.keys(groupToDisplay)
+			+displayRow(groupKey,key,groupToDisplay[key])
+		button(type="button").addChoice +
+
+
 html
 	head
 		title= locale.website[title]
 
-		
-
+		link(rel="icon" type="image/png" href="/Icons/logo_small.png")
 		link(rel='stylesheet', href='/style.css', type='text/css')
 		script(src="/jquery/jquery.min.js")
 		script(src="/ui.js")
 		script(src="/script.js")
-		link(rel="icon" type="image/png" href="/Icons/logo_small.png")
-
+		
 		link(href="/choicesjs/styles/choices.min.css" rel="stylesheet")
 		script(src="/choicesjs/scripts/choices.min.js")
 
@@ -17,9 +35,46 @@ html
 		
 	body
 
+		nav.menuTransitions
+			div#menuFirst.menuContainer
+				img(src='/Icons/menu.png')
+				p=locale.website.menu
+			div#menu
+				a.menuContainer(class='nav-button' href=base_route+'/')
+					img(src='/Icons/home.png')
+					p.menuTransitions=locale.website.index
+				if typeof base_route !== "undefined" && base_route !== '/'
+					a.menuContainer(class='nav-button' href=base_route+'/form')
+						img(src='/Icons/document.png')
+						p.menuTransitions=locale.website.form
+					a.menuContainer(class='nav-button' href=base_route+'/search')
+						img(src='/Icons/search.png')
+						p.menuTransitions=locale.website.search
+
 		div#pageBlock.menuTransitions
 			div#contentBlock
 				h1= locale.website[title]
 				h2.subtitle= locale.schema.project_name
+				form#choicesdiv(method="POST" action=base_route+"/choices")
+					div#choiceTemplate
+						div.addedChoice 
+							span Nom
+							input(type=text, hiddenname="name").nameInput
+							span Lien
+							input(type=text, hiddenname="link").linkInput
+
+							button(type="button").cancelModifyChoice Annuler
+							button(type="button").validateModificationChoice Valider
+
+							button(type="button").removeChoice Supprimer
+							button(type="button").modifyChoice Modifier
+							
+					each key in Object.keys(choicesSet)
+						+displayGroup(key,choicesSet[key])
+
+					button#sendChoices(type="submit" value="Envoyer") Envoyer
+					
+
+
 
 

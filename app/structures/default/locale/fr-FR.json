@@ -15,6 +15,13 @@
 		"send_form" : "Envoyer le formulaire",
 		"results" : "Résultats",
 		"research" : "Rechercher",
-		"menu" : "Menu"
+		"menu" : "Menu",
+		"choices" : "Edition des choix",
+		"loadingText" : "Chargement...",
+		"noResultsText" : "Aucun résultat",
+		"noChoicesText" : "Aucun choix disponible",
+		"itemSelectText" : "Cliquez pour ajouter"
+
 	}
 }
+

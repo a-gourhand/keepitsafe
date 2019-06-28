@@ -2,8 +2,9 @@ const uuidv1        = require('uuid/v1')
 const jp            = require('jsonpath')
 
 const pug_helper    = require('../pug_helper')
-const render    = require('../render.js')
+const render        = require('../render.js')
 
+//FOR COLLECTIONS OF DOCUMENTS
 function createCollectionRouting(project){
 
     /* === MIDDLEWARE === */
@@ -113,6 +114,7 @@ function createCollectionRouting(project){
     })
 }
 
+//FOR SINGLE DOCUMENTS
 function createResourceRouting(project){
 
     /* === MIDDLEWARE === */

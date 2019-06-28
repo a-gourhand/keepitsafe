@@ -65,7 +65,8 @@ mixin displayTags(currentKey, key, objToDisplay, values, attribs)
 	if typeof(values) === "object"
 		-value = pug_helper.getObjProperty(values,combinedKeys)
 
-	input.form-control.tagDiv(id="tag-"+keystring,type="text")
+	//input.form-control.tagDiv(id="tag-"+keystring,type="text")
+	select.form-control.tagDiv(id="tag-"+keystring,key=key, multiple="multiple")
 	input(id="hidden-"+keystring, type="hidden", name=keystring, value=value)
 
 mixin displayTitleAndTooltip(key, choices=false)
@@ -83,4 +84,5 @@ mixin displayTitleAndTooltip(key, choices=false)
 				button.tooltipbtn.tooltipcancel(type="button") Annuler
 				span.helpid=key
 		if choices
-			a.set_choices(href=base_route+"/choices" target="_blank") @
+			a.set_choices(href=base_route+"/choices?key="+key target="_blank") @
+			

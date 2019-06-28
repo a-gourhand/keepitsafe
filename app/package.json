@@ -5,6 +5,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "choices.js": "^7.0.0",
+    "esdoc": "^1.1.0",
+    "esdoc-standard-plugin": "^1.0.0",
     "express": "^4.16.4",
     "fs": "0.0.1-security",
     "immutable": "^4.0.0-rc.12",
