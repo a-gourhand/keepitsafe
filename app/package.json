@@ -14,7 +14,7 @@
     "jsonpath": "^1.0.1",
     "mobius1-selectr": "^2.4.8",
     "mongodb": "^3.1.12",
-    "mongoose": "^5.4.14",
+    "mongoose": "^5.7.5",
     "path": "^0.12.7",
     "pug": "^2.0.3",
     "uuid": "^3.3.2"
