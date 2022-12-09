@@ -7,7 +7,7 @@
     "choices.js": "^7.0.0",
     "esdoc": "^1.1.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "fs": "0.0.1-security",
     "immutable": "^4.0.0-rc.12",
     "jquery": "^3.4.1",
